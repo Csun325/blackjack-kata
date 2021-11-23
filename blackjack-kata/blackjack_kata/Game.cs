@@ -43,6 +43,7 @@ namespace blackjack_kata
 
             return Status.Safe;
         }
+        
         //initialise by creating participating and drawing two cards to start
         public void StartGame(Person participant, Deck deck)
         {
@@ -50,7 +51,7 @@ namespace blackjack_kata
             participant.AddToHand(deck.GetCard());
             participant.GetCurrentScore();
             
-            // print method needed
+            participant.PrintCurrentHand(participant.Score);
         }
         //each round = draw, calculate score, adjust score if needed, and check status print and ask for input
 

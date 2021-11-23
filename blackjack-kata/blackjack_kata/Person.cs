@@ -30,10 +30,11 @@ namespace blackjack_kata
 
             foreach (var c in this.Hand)
             {
-                if (c.GetRank() == Card.Rank.Ace)
+                if (c.GetRankValue() == 11) ;
                 {
                     aceNums++;
                 }
+                
                 score += c.GetRankValue();
             }
 
@@ -71,7 +72,8 @@ namespace blackjack_kata
             {
                 cards.Add(c.PrintString());
             }
-            //Console.WriteLine("with the hand: " + String.Join("[", cards, "]"));
+            Console.Write("with the hand: ");
+            Console.WriteLine(string.Join(",", cards));
 
         }
     }
