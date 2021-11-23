@@ -28,11 +28,14 @@ namespace blackjack_kata
                 Console.WriteLine("\nDealer now Playing");
 
                 gameLogic.StartGame(p2, playingDeck);
+                gameLogic.GameContinue(p2, playingDeck);
             }
             else
             {
                 Console.WriteLine("\nDealer wins");
             }
+            
+            //check winning conditions
             
 
         }

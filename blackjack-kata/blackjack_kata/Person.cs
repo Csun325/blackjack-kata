@@ -51,46 +51,13 @@ namespace blackjack_kata
             Hand.Add(card);
         }
 
-        public void AskInput()
+        public virtual void AskInput()
         {
-            Console.Write("\nHit or stay? (Hit = 1, Stay = 0): ");
-            var response = int.Parse(Console.ReadLine());
-            //! NEED TRY CATCH EXCEPTION
-            if (response == 1)
-            {
-                this.Action = Choice.Hit;
-            }
-            else
-            {
-                this.Action = Choice.Stay;
-            }
         }
         
         
-        public void PrintCurrentHand(int score, Game.Status status)
+        public virtual void PrintCurrentHand(int score, Game.Status status)
         {
-            switch (status)
-            {
-                case Game.Status.Bust:
-                    Console.WriteLine("You are currently at: Bust!");
-                    // set game as lost
-                    
-                    
-                    break;
-                case Game.Status.BlackJack:
-                    Console.WriteLine("You are currently at: BLACKJACK!" );
-                    // record this to the participant instant and move to dealer
-                    
-                    
-                    break;
-                default:
-                    Console.WriteLine("You are currently at: " + score);
-                    break;
-            }
-            var cards = Hand.Select(c => c.PrintString()).ToList();
-            Console.Write("with the hand: ");
-            Console.WriteLine(string.Join(",", cards));
-
         }
     }
 }
