@@ -51,7 +51,7 @@ namespace blackjack_kata
 
         public Choice AskInput()
         {
-            Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0): ");
+            Console.Write("Hit or stay? (Hit = 1, Stay = 0): ");
             var response = Console.Read();
             //! NEED TRY CATCH EXCEPTION
             if (response == 1)
@@ -63,15 +63,27 @@ namespace blackjack_kata
         }
         
         
-        public void PrintCurrentHand(int score)
+        public void PrintCurrentHand(int score, Game.Status status)
         {
-            Console.WriteLine("You are currently at: " + score);
-            int numCards = Hand.Count;
-            var cards = new List<String>();
-            foreach (var c in Hand)
+            switch (status)
             {
-                cards.Add(c.PrintString());
+                case Game.Status.Bust:
+                    Console.WriteLine("You are currently at: Bust!");
+                    // set game as lost
+                    
+                    
+                    break;
+                case Game.Status.BlackJack:
+                    Console.WriteLine("You are currently at: BLACKJACK!" );
+                    // record this to the participant instant
+                    
+                    
+                    break;
+                default:
+                    Console.WriteLine("You are currently at: " + score);
+                    break;
             }
+            var cards = Hand.Select(c => c.PrintString()).ToList();
             Console.Write("with the hand: ");
             Console.WriteLine(string.Join(",", cards));
 

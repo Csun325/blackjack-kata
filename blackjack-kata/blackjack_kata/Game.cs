@@ -51,13 +51,26 @@ namespace blackjack_kata
             participant.AddToHand(deck.GetCard());
             participant.GetCurrentScore();
             
-            participant.PrintCurrentHand(participant.Score);
+            // initial round only need to consider BlackJack
+            Status s = IsBlackJack(participant.Score);
+            participant.PrintCurrentHand(participant.Score, s);
+            participant.AskInput();
         }
+        
         //each round = draw, calculate score, adjust score if needed, and check status print and ask for input
 
-        public void GameContinue()
+        public void GameContinue(Person participant, Deck deck)
         {
-            
+            participant.AddToHand(deck.GetCard());
+            participant.GetCurrentScore();
+
+            if (participant.Score > 21)
+            {
+                AdjustAce(participant.Score, participant.AceNum); 
+            }
+            var s = IsBlackJack(participant.Score);
+            s = IsBust(participant.Score);
+            participant.PrintCurrentHand(participant.Score, s);
         }
         
     }
