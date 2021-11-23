@@ -14,6 +14,11 @@ namespace blackjack_kata
             this.suit = suit;
         }
 
+        public int GetRankValue()
+        {
+            return (int) this.rank;
+        }
+
         public Rank GetRank()
         {
             return this.rank;
@@ -30,22 +35,33 @@ namespace blackjack_kata
 
         public enum Rank
         {
-            Ace,
-            Two,
-            Three,
-            Four,
-            Five,
-            Six,
-            Seven,
-            Eight,
-            Nine,
-            Ten,
-            Jack,
-            Queen,
-            King
+            Ace = 11,
+            Two = 2,
+            Three = 3,
+            Four = 4,
+            Five = 5,
+            Six = 6,
+            Seven = 7,
+            Eight = 8,
+            Nine = 9,
+            Ten = 10,
+            Jack = 10,
+            Queen = 10,
+            King = 10
             
         }
 
+        public void AllRanks()
+        {
+            
+        }
+
+        public String PrintString()
+        {
+            return ("[" + rank.ToString() + " " + suit.ToString() + "]");
+        }
+
+        // used for terminal purpose only ... will remove at end
         public void Printcard()
         {
             Console.WriteLine(rank + " of " + suit);

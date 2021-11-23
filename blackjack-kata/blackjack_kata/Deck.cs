@@ -6,30 +6,47 @@ namespace blackjack_kata
 {
     public class Deck
     {
-        public Stack<Card> cards = new Stack<Card>();
+        public List<Card> cards = new List<Card>();
         public Stack<Card> mixedCards = null!;
+        static Random rnd = new Random();
 
-        // Created a deck of 52 cards
+        // Creating a deck of 52 cards
         public void CreateDeck()
         {
             foreach (Card.Suit suits in Enum.GetValues(typeof(Card.Suit)))
             {
-                foreach (Card.Rank rank in Enum.GetValues(typeof(Card.Rank)))
+                for (int i = 2; i < 11; i++)
                 {
-                     // create card and add to stack
-                     Card cd = new Card(rank, suits);
-                     cards.Push(cd);
-                     // check via terminal
-                     //cd.Printcard();
+                    Card.Rank k = (Card.Rank) i;
+                    Card cd = new Card(k, suits);
+                    cards.Add(cd);
                 }
+    
+                cards.Add(new Card(Card.Rank.Ace, suits));
+                cards.Add(new Card(Card.Rank.King, suits));
+                cards.Add(new Card(Card.Rank.Queen, suits));
+                cards.Add(new Card(Card.Rank.Jack, suits));
+                
+                
             }
+            
+            
         }
 
         // randomised the deck of cards into mixed cards
         public void RandomiseDeck()
         {
-            var rnd = new Random();
-            mixedCards = new Stack<Card>(cards.OrderBy(item => rnd.Next()));
+            //var rnd = new Random();
+            // mixedCards = new Stack<Card>(cards.OrderBy(item => rnd.Next()));
+            Console.WriteLine(cards.Count);
+            
+            for (int i = cards.Count - 1; i > 0; --i)
+            {
+                int k = rnd.Next(i + 1);
+                (cards[i], cards[k]) = (cards[k], cards[i]);
+            }
+
+            mixedCards = new Stack<Card>(cards);
         }
 
         public Card GetCard()
