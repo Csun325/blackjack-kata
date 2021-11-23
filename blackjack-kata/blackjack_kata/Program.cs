@@ -7,7 +7,7 @@ namespace blackjack_kata
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, World! This is BLACKJACK!\n");
             var playingDeck = new Deck();
             var gameLogic = new Game();
             var p1 = new Player();
@@ -18,7 +18,6 @@ namespace blackjack_kata
             playingDeck.RandomiseDeck();
             
             
-            //starting the game for p1
             
             gameLogic.StartGame(p1, playingDeck);
             gameLogic.GameContinue(p1,playingDeck);
@@ -36,8 +35,9 @@ namespace blackjack_kata
             }
             
             //check winning conditions
-            
+            gameLogic.CheckWinConditions(p1, p2);
 
         }
+      
     }
 }

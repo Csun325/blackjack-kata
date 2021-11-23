@@ -10,14 +10,7 @@ namespace blackjack_kata
         public override void AskInput()
         {
             var currentScore = this.Score;
-            if (currentScore <= 17)
-            {
-                this.Action = Choice.Hit;
-            }
-            else
-            {
-                this.Action = Choice.Stay;
-            }
+            this.Action = currentScore <= 17 ? Choice.Hit : Choice.Stay;
         }
 
         public override void PrintCurrentHand(int score, Game.Status status)

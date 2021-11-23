@@ -76,5 +76,24 @@ namespace blackjack_kata
                 participant.AskInput();
             }
         }
+
+
+        public void CheckWinConditions(Player p1, Dealer p2)
+        {
+            if (p2.Score > p1.Score)
+            {
+                Console.WriteLine("Dealer wins");
+            }
+
+            if (p2.Score == p1.Score)
+            {
+                Console.WriteLine("It's a Tie");
+            }
+
+            if (p2.Outcome == Person.Conclusion.Lose)
+            {
+                Console.WriteLine("You beat the dealer!");
+            }
+        }
     }
 }

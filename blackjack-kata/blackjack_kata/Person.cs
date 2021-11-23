@@ -55,7 +55,6 @@ namespace blackjack_kata
         {
         }
         
-        
         public virtual void PrintCurrentHand(int score, Game.Status status)
         {
         }
