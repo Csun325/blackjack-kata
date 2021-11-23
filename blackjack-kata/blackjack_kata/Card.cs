@@ -71,11 +71,6 @@ namespace blackjack_kata
         {
             return ("[" + rank.ToString() + " " + suit.ToString() + "]");
         }
-
-        // used for terminal purpose only ... will remove at end
-        public void Printcard()
-        {
-            Console.WriteLine(rank + " of " + suit);
-        }
+        
     }
 }

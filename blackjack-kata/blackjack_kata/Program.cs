@@ -9,7 +9,7 @@ namespace blackjack_kata
         {
             Console.WriteLine("Hello, World!");
             var playingDeck = new Deck();
-            var gamelogic = new Game();
+            var gameLogic = new Game();
             var p1 = new Player();
             var p2 = new Dealer();
             
@@ -20,10 +20,10 @@ namespace blackjack_kata
             
             //starting the game for p1
             
-            gamelogic.StartGame(p1, playingDeck);
+            gameLogic.StartGame(p1, playingDeck);
+            gameLogic.GameContinue(p1,playingDeck);
             
-
-            
+            Console.WriteLine("\nDealer now Playing");
 
 
         }

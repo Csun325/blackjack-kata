@@ -24,24 +24,14 @@ namespace blackjack_kata
 
         }
 
-        public Status IsBlackJack(int score)
+        public Status CheckStatus(int score)
         {
-            if (score == 21)
+            return score switch
             {
-                return Status.BlackJack;
-            }
-
-            return Status.Safe;
-        }
-
-        public Status IsBust(int score)
-        {
-            if (score > 21)
-            {
-                return Status.Bust;
-            }
-
-            return Status.Safe;
+                21 => Status.BlackJack,
+                > 21 => Status.Bust,
+                _ => Status.Safe
+            };
         }
         
         //initialise by creating participating and drawing two cards to start
@@ -51,27 +41,34 @@ namespace blackjack_kata
             participant.AddToHand(deck.GetCard());
             participant.GetCurrentScore();
             
-            // initial round only need to consider BlackJack
-            Status s = IsBlackJack(participant.Score);
+            Status s = CheckStatus(participant.Score);
             participant.PrintCurrentHand(participant.Score, s);
-            participant.AskInput();
+            
         }
         
-        //each round = draw, calculate score, adjust score if needed, and check status print and ask for input
 
+        // game continues if action is hit!
         public void GameContinue(Person participant, Deck deck)
         {
-            participant.AddToHand(deck.GetCard());
-            participant.GetCurrentScore();
-
-            if (participant.Score > 21)
+            participant.AskInput();
+            while (participant.Action == Person.Choice.Hit)
             {
-                AdjustAce(participant.Score, participant.AceNum); 
+                participant.AddToHand(deck.GetCard());
+                participant.GetCurrentScore();
+
+                if (participant.Score > 21)
+                {
+                    AdjustAce(participant.Score, participant.AceNum); 
+                }
+
+                var s = CheckStatus(participant.Score);
+                participant.PrintCurrentHand(participant.Score, s);
+                if (s == Status.Bust || s == Status.BlackJack)
+                {
+                    break;
+                }
+                participant.AskInput();
             }
-            var s = IsBlackJack(participant.Score);
-            s = IsBust(participant.Score);
-            participant.PrintCurrentHand(participant.Score, s);
         }
-        
     }
 }

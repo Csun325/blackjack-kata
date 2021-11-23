@@ -10,6 +10,7 @@ namespace blackjack_kata
         public List<Card> Hand = new List<Card>();
         public int Score;
         public int AceNum;
+        public Choice Action;
         
         public enum Choice
         {
@@ -30,15 +31,15 @@ namespace blackjack_kata
 
             foreach (var c in this.Hand)
             {
-                if (c.GetRankValue() == 11) ;
+                if (c.GetRankValue() == 0)
                 {
                     aceNums++;
                 }
-                
+                this.AceNum = aceNums;
                 score += c.GetRankValue();
             }
 
-            this.AceNum = aceNums;
+            //this.AceNum = aceNums;
             this.Score = score;
             
             return score;
@@ -49,17 +50,19 @@ namespace blackjack_kata
             Hand.Add(card);
         }
 
-        public Choice AskInput()
+        public void AskInput()
         {
-            Console.Write("Hit or stay? (Hit = 1, Stay = 0): ");
-            var response = Console.Read();
+            Console.Write("\nHit or stay? (Hit = 1, Stay = 0): ");
+            var response = int.Parse(Console.ReadLine());
             //! NEED TRY CATCH EXCEPTION
             if (response == 1)
             {
-                return Choice.Hit;
+                this.Action = Choice.Hit;
             }
-
-            return Choice.Stay;
+            else
+            {
+                this.Action = Choice.Stay;
+            }
         }
         
         
@@ -75,7 +78,7 @@ namespace blackjack_kata
                     break;
                 case Game.Status.BlackJack:
                     Console.WriteLine("You are currently at: BLACKJACK!" );
-                    // record this to the participant instant
+                    // record this to the participant instant and move to dealer
                     
                     
                     break;
