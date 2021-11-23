@@ -11,13 +11,14 @@ namespace blackjack_kata
         public int Score;
         public int AceNum;
         public Choice Action;
+        public Conclusion Outcome;
         
         public enum Choice
         {
             Hit, 
             Stay
         }
-        protected enum Conclusion
+        public enum Conclusion
         {
             Win,
             Lose,

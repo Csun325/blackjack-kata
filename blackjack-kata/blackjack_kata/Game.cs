@@ -63,8 +63,14 @@ namespace blackjack_kata
 
                 var s = CheckStatus(participant.Score);
                 participant.PrintCurrentHand(participant.Score, s);
-                if (s == Status.Bust || s == Status.BlackJack)
+                if (s == Status.Bust )
                 {
+                    participant.Outcome = Person.Conclusion.Lose;
+                    break;
+                }
+                if (s == Status.BlackJack)
+                {
+                    participant.Outcome = Person.Conclusion.Win;
                     break;
                 }
                 participant.AskInput();
